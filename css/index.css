@@ -1,0 +1,182 @@
+#contenedorApuestas {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#partidos {
+  width: 46%;
+  text-align: center;
+}
+#partidos div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  margin: 3px;
+  border: solid 2px black;
+  border-radius: 3%;
+  height: 50px;
+  width: 99%;
+  background-color: #7e7e7e;
+}
+#partidos div div {
+  height: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  vertical-align: middle;
+  justify-content: center;
+  border: none;
+}
+#partidos div div .parrafo1 {
+  margin: 1px;
+  background-color: #20531e;
+  font-weight: bold;
+  color: white;
+  border-radius: 5%;
+}
+#partidos div div .parrafo2 {
+  margin: 1px;
+  background-color: #aae7ff;
+  font-weight: bold;
+  color: black;
+  border-radius: 5%;
+}
+#partidos .btnAgregar {
+  height: auto;
+}
+#partidos .btnAgregar button {
+  margin: 2px;
+  width: 99%;
+  border-radius: 5%;
+}
+
+#apuestas {
+  width: 46%;
+}
+#apuestas label {
+  margin-left: 5px;
+  display: inline-block;
+  width: 200px;
+}
+#apuestas div {
+  margin: 3px;
+  border: solid 1px black;
+}
+#apuestas div .eliminar {
+  margin: 5px;
+  background-color: red;
+  width: 15px;
+  border: 2px solid rgba(255, 0, 0, 0.486);
+  text-align: center;
+}
+#apuestas div .eliminar:hover {
+  opacity: 60%;
+  border: 2px solid white;
+}
+#apuestas div select {
+  margin: 0px 5px;
+  background-color: #11035e;
+  color: white;
+  font-weight: bold;
+  width: 100px;
+}
+#apuestas div select option {
+  background-color: #11035e;
+}
+#apuestas .animacionAgregar {
+  background-color: white;
+  animation-name: variacionColor;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+}
+@keyframes variacionColor {
+  0% {
+    background-color: #f5f53c;
+  }
+  20% {
+    background-color: #ffff79;
+  }
+  40% {
+    background-color: #f7f79e;
+  }
+  60% {
+    background-color: #fafac8;
+  }
+  80% {
+    background-color: #fcfcdc;
+  }
+  100% {
+    background-color: white;
+  }
+}
+#apuestas form {
+  background-color: #414040;
+  border-radius: 2%;
+}
+#apuestas form div {
+  background-color: #414040;
+  border: none;
+}
+#apuestas form div label {
+  background-color: #414040;
+  font-weight: bold;
+}
+#apuestas form div button {
+  margin: 5px;
+  width: 70px;
+  border-radius: 15%;
+}
+#apuestas form div input {
+  margin: 5px;
+  width: 50px;
+  text-align: end;
+  font-weight: bold;
+  background-color: #aae7ff;
+}
+
+#contenedorError {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+}
+#contenedorError #error {
+  width: 30%;
+  color: red;
+}
+#contenedorError #errorMonto {
+  width: 30%;
+  color: red;
+}
+
+#eleccion {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+}
+#eleccion #eleccion__ligas {
+  width: auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+#eleccion #eleccion__ligas #eleccion__btnLigas {
+  width: auto;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+#eleccion #eleccion__ligas #competicion {
+  width: auto;
+  height: auto;
+  margin: 0px 5px;
+  border: none;
+  font-weight: bold;
+}
+#eleccion #eleccion__ligas #eleccion__errorLiga {
+  width: 10px;
+  color: red;
+}
+
+/*# sourceMappingURL=index.css.map */

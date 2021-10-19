@@ -1,0 +1,45 @@
+$fondoTotal: rgb(32, 83, 30);
+$fondoPartido: rgb(170, 231, 255);
+
+#apuestas__listadoConfirmados{
+    border: 3px solid black;
+
+    .apuestas__total{
+        display: flex;
+        flex-flow: row nowrap;
+        background-color: $fondoTotal;
+        color:white;
+        height: auto;
+        padding: 2px 0px;
+
+        .apuestas__parrafoTotal{
+            width: 75%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .apuestas__parrafoBoton{
+            width: 25%;
+            text-align: center;
+            font-weight: bold;
+            
+            button{
+                width: 65px;
+            }
+        }
+    }
+
+    .apuestas__partidos{
+        background-color: $fondoPartido;
+
+        div{
+            padding: 0px 5px;
+            display: flex;
+            flex-flow: row nowrap;
+
+            p{
+                width: 33%;
+            }
+        }
+    }
+}

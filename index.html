@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sitio de Apuestas - Inicio</title>
+
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/compartidos.css">
+        
+        <script src="Boostrap/js/jquery-3.0.0.min.js"></script>
+    </head>
+    <body>
+        <header class="encabezado">
+            <nav class="encabezado__navegador">
+                <ul class="encabezado__menu">
+                    <li class="encabezado__item"><a class="encabezado__enlace" id="encabezado__inicio" href="index.html">Inicio</a></li>
+                    <li class="encabezado__item"><a class="encabezado__enlace" id="encabezado__listadoApuestas" href="Secciones/listadoApuestas.html">Ver apuestas</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div id="eleccion">
+                <div id="eleccion__apostar" hidden>
+                    <button id="eleccion__btnApostar">
+                        Apostar
+                    </button>
+                </div>
+                <div id="eleccion__ligas" visible>
+                    <button id="eleccion__btnLigas">
+                        Estadisticas
+                    </button>
+                    <select id="competicion">
+                        <option value="">Seleccionar Liga</option>
+                    </select>
+                    <label id="eleccion__errorLiga"></label>
+                </div>
+            </div>
+            <div id="contenedorError">
+                <label id="error"></label>
+                <label id="errorMonto"></label>
+            </div>  
+            <div id="contenedorApuestas">
+                <div id="partidos">
+                </div>
+                <div id="apuestas">
+                    <h1>Realizar Apuesta</h1>
+                    <form autocomplete="off">
+                        <div>
+                            <label>Multiplicador</label>
+                            <input id="multiplicador" type="text" readonly disabled/>
+                        </div>
+                        <div>
+                            <label>Monto a apostar $U:</label>
+                            <input id="monto" type="text"/>
+                            <button id="btnApostar">Apostar</button>
+                        </div> 
+                        <div>
+                            <label>Total a ganar $U:</label>
+                            <input id="total" type="text" readonly disabled/>
+                        </div>
+                    </form>
+                    <div id="apuestas__partidos">
+                    </div>
+                </div>
+                <div id="ligas">
+                </div>
+            </div>      
+        </main>
+
+
+        <script src="Boostrap/js/jquery-3.0.0.min.js"></script>
+        <script src="javascript/dom.js"></script>
+        <script src="javascript/objetos.js"></script>
+        <script src="javascript/logicaInicial.js"></script>
+        <script src="javascript/navegador.js"></script>
+        <script src="javascript/logicaDatosLigas.js"></script>
+    </body>
+</html>
