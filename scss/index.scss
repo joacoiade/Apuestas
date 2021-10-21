@@ -76,14 +76,14 @@ $fondoProbabilidad: rgb(170, 231, 255);
     
         .eliminar{
             margin: 5px;
-            background-color: red;
+            background-color: rgba(255, 0, 0);
             width: 15px;
             border: 2px solid rgba(255, 0, 0, 0.486);
             text-align: center;
         }
         .eliminar:hover{
             opacity: 60%;
-            border: 2px solid white; 
+            border: 2px solid rgb(92, 0, 0); 
         }
 
         select{
@@ -152,6 +152,18 @@ $fondoProbabilidad: rgb(170, 231, 255);
                 text-align: end;
                 font-weight: bold;
                 background-color:rgb(170, 231, 255);
+            }
+
+            #errorMonto{
+                width: 20px;
+                color: red;
+            }
+
+            #apuestaExito{
+                color: white;
+                font-size: 1em;
+                visibility: hidden;
+                font-weight: bold;
             }
         }
     }

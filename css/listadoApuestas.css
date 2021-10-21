@@ -8,9 +8,18 @@
   color: white;
   height: auto;
   padding: 2px 0px;
+  align-items: center;
+}
+#apuestas__listadoConfirmados .apuestas__total .apuestas__expandir {
+  width: 5%;
+  text-align: center;
+}
+#apuestas__listadoConfirmados .apuestas__total .apuestas__expandir button {
+  padding: 2px;
+  border-radius: 10px;
 }
 #apuestas__listadoConfirmados .apuestas__total .apuestas__parrafoTotal {
-  width: 75%;
+  width: 70%;
   text-align: center;
   font-weight: bold;
 }
@@ -21,6 +30,7 @@
 }
 #apuestas__listadoConfirmados .apuestas__total .apuestas__parrafoBoton button {
   width: 65px;
+  border-radius: 15%;
 }
 #apuestas__listadoConfirmados .apuestas__partidos {
   background-color: #aae7ff;

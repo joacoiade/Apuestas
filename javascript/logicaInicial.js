@@ -16,6 +16,24 @@ partidos.push(partido6);
 
 localStorage.setItem("partidos", JSON.stringify(partidos));
 
+//mostrar éxito en apuesta
+const apuestaExitosa = () =>{
+    let opacidad = 1;
+    
+    $("#apuestaExito").css("opacity", opacidad);
+    $("#apuestaExito").css("visibility", "visible");
+    
+    const borrarConfirmacion = setInterval(()=>{
+        $("#apuestaExito").css("opacity", opacidad);
+        opacidad -= 0.125;
+    }, 1000);
+
+    setTimeout(() => {
+        $("#apuestaExito").css("visibility", "hidden");
+        clearInterval(borrarConfirmacion);
+    }, 10000);
+}
+
 //borrar texto de errores
 const limpiar = ()=>{
     lblError.text("");
@@ -39,15 +57,14 @@ const realizarApuesta = (e)=>{
     //en caso de errores en el monto, no realizar nada
     if(isNaN(inputMonto.val().trim()) && inputMonto.val().trim() != "" || inputMonto.val().trim() == ""  || inputMonto.val().trim()%1 !=0)
     {
-        lblErrorMonto.text("Recuerda ingresar un monto valido, sin valores decimales");
+        setearError(lblErrorMonto, "Recuerda ingresar un monto valido, sin valores decimales");
     }
     else if (apuesta.juegos.length == 0)
     {
-        lblErrorMonto.text("No se han seleccionado apuestas");
+        setearError(lblErrorMonto, "No se han seleccionado apuestas");
     }
     else //se confirma la apuesta, se guarda en la memoria y se resetean los valores en pantalla
     {
-        lblErrorMonto.text("Apuesta realizada con éxito");
         const apuesta = JSON.parse(localStorage.getItem("apuesta"));
         apuesta.ganar = inputTotal.val();
         apuesta.monto = inputMonto.val();
@@ -67,8 +84,9 @@ const realizarApuesta = (e)=>{
         inputTotal.val("");
         
         localStorage.setItem("apuesta", JSON.stringify(new Apuesta()));
-    }
 
+        apuestaExitosa();
+    }
 }
 
 //cancelar funcionlidad de enter
@@ -83,7 +101,7 @@ const totalApostar = ()=>{
     lblErrorMonto.text("");
     if(isNaN(inputMonto.val().trim()) && inputMonto.val().trim() != "" || inputMonto.val().trim()%1 != 0)
     {
-        lblErrorMonto.text("Recuerda solo ingresar números, incluso sin valores decimales");
+        setearError(lblErrorMonto, "Recuerda solo ingresar números, incluso sin valores decimales");
     }    
     else if(inputMonto.val().trim() == "")
     {

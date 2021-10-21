@@ -39,7 +39,6 @@
             </div>
             <div id="contenedorError">
                 <label id="error"></label>
-                <label id="errorMonto"></label>
             </div>  
             <div id="contenedorApuestas">
                 <div id="partidos">
@@ -55,10 +54,12 @@
                             <label>Monto a apostar $U:</label>
                             <input id="monto" type="text"/>
                             <button id="btnApostar">Apostar</button>
+                            <label id="errorMonto"></label>
                         </div> 
                         <div>
                             <label>Total a ganar $U:</label>
                             <input id="total" type="text" readonly disabled/>
+                            <label id="apuestaExito">Apuesta realizada</label>
                         </div>
                     </form>
                     <div id="apuestas__partidos">
