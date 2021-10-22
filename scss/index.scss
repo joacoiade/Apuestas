@@ -169,23 +169,6 @@ $fondoProbabilidad: rgb(170, 231, 255);
     }
 }
 
-#contenedorError{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    width: 100%;
-
-    #error{
-        width: 30%;
-        color: red;
-    }
-    
-    #errorMonto{
-        width: 30%;
-        color: red;
-    }
-}
-
 #eleccion{ 
     display: flex;
     flex-flow: row nowrap;

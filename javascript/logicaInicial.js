@@ -36,7 +36,6 @@ const apuestaExitosa = () =>{
 
 //borrar texto de errores
 const limpiar = ()=>{
-    lblError.text("");
     lblErrorMonto.text("");
     lblErrorLiga.text("");
     lblErrorLiga.hide();
@@ -194,13 +193,10 @@ const agregarJuego = (game)=>{
     contenedorPartidos.append(div);
 }
 
-//eliminar uan apuesta
-const eliminarApuesta = function(e){
-    e.preventDefault();
-    let id = e.target.id.replace("eliminarId", "");
+//eliminar apuesta genérico
+const eliminarApuestaGeneral = function(id){
+    let idEliminar = "eliminarId" + id;
 
-    limpiar();
-    
     const apuesta = JSON.parse(localStorage.getItem("apuesta"));
 
     apuesta.juegos = apuesta.juegos.filter(function(juego){
@@ -209,16 +205,28 @@ const eliminarApuesta = function(e){
 
     localStorage.setItem("apuesta", JSON.stringify(apuesta));
     
-    const div = document.getElementById(e.target.id).parentNode;
+    const div = document.getElementById(idEliminar).parentNode;
 
     div.remove();
 
     //vuelvo a calcular los saldos
     calcularApuesta();
-    totalApostar();    
+    totalApostar();
+    
+    $("#" + id).text("Agregar");
 }
 
-//sumar partido a apuestas a realizar
+//eliminar uan apuesta desde apuesta a realizar
+const eliminarApuesta = function(e){
+    e.preventDefault();
+    let id = e.target.id.replace("eliminarId", "");
+
+    limpiar();
+    
+    eliminarApuestaGeneral(id);
+}
+
+//sumar partido a apuesta a realizar o eliminarlo
 const agregarApuesta = function(e){
     e.preventDefault();
     
@@ -248,10 +256,11 @@ const agregarApuesta = function(e){
         agregarJuego(match);
         $("#eliminarId" + match.id).click(eliminarApuesta);
         $("#partido" + match.id).change(modificarApuesta);
+        $("#" + match.id).text("Eliminar");
     }
     else
     {
-        lblError.text("El partido " + match.equipo1 + " vs " + match.equipo2 + " ya ha sido seleccionado");
+        eliminarApuestaGeneral(match.id);
     }
 }
 
@@ -283,6 +292,7 @@ const listadoInicialApuestas = ()=>{
     for(const juego of apuesta.juegos)
     {
         agregarJuego(juego);
+        $("#" + juego.id).text("Eliminar");
     }
 
     if(apuesta.juegos.length > 0)

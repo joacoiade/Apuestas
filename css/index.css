@@ -146,21 +146,6 @@
   font-weight: bold;
 }
 
-#contenedorError {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  width: 100%;
-}
-#contenedorError #error {
-  width: 30%;
-  color: red;
-}
-#contenedorError #errorMonto {
-  width: 30%;
-  color: red;
-}
-
 #eleccion {
   display: flex;
   flex-flow: row nowrap;
