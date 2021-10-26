@@ -73,7 +73,7 @@ const listaApuestas = ()=>{
 
         //info global de una apuesta a mostrar 
         const divTitularApuesta = document.createElement("div");
-        divTitularApuesta.innerHTML = '<div class="apuestas__expandir"><button id="Expandir' + apuesta.id + 
+        divTitularApuesta.innerHTML = '<div class="apuestas__expandir"><button class="apuestas__botonExp" id="Expandir' + apuesta.id + 
                                     '">...</button></div><div class="apuestas__parrafoTotal">Gana $ ' + apuesta.ganar + 
                                     ' - Apostado $ ' + apuesta.monto + ' - ' + apuesta.resultadoTotal +
                                     '</div><div class="apuestas__parrafoBoton"><button id="Calcular' + 

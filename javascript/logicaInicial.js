@@ -184,11 +184,11 @@ const modificarApuesta = (e)=>{
 const agregarJuego = (game)=>{
     const div = document.createElement("div");
 
-    div.innerHTML = '<label>' + game.equipo1 + ' vs ' + game.equipo2 + '</label><select id="partido' + game.id + '">' +
+    div.innerHTML = '<label class="apuestas__texto">' + game.equipo1 + ' vs ' + game.equipo2 + '</label><select class="apuestas__seleccionar" id="partido' + game.id + '">' +
                     '<option value="0">Gana Local</option><option value="1">Empate</option>' +
                     '<option value="2">Gana Visita</option></select><button id="eliminarId' + game.id + '" class="eliminar" type="submit">X</button>';
     
-    div.className = "animacionAgregar";                    
+    div.className = "animacionAgregar";  
     
     contenedorPartidos.append(div);
 }

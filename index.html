@@ -6,19 +6,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sitio de Apuestas - Inicio</title>
 
+        <link rel="stylesheet" href="Boostrap/css/bootstrap.min.css">
+        <script src="Boostrap/js/bootstrap.min.js"></script>
+        <script src="Boostrap/js/jquery-3.0.0.min.js"></script> 
+
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/compartidos.css">
         
-        <script src="Boostrap/js/jquery-3.0.0.min.js"></script>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
     </head>
     <body>
         <header class="encabezado">
             <nav class="encabezado__navegador">
                 <ul class="encabezado__menu">
                     <li class="encabezado__item"><a class="encabezado__enlace" id="encabezado__inicio" href="index.html">Inicio</a></li>
+                    <li class="encabezado__item encabezado__item--titulo"><div><i class="fas fa-trophy encabezado__logo"></i></div><div class="encabezado__textoTitulo">TOTALBET</div><div><i class="fas fa-trophy encabezado__logo"></i></div></li>                    
                     <li class="encabezado__item"><a class="encabezado__enlace" id="encabezado__listadoApuestas" href="Secciones/listadoApuestas.html">Ver apuestas</a></li>
                 </ul>
-            </nav>
+            </nav>          
         </header>
         <main>
             <div id="eleccion">
@@ -44,17 +50,17 @@
                     <h1>Realizar Apuesta</h1>
                     <form autocomplete="off">
                         <div>
-                            <label>Multiplicador</label>
+                            <label class="apuestas__label">Multiplicador</label>
                             <input id="multiplicador" type="text" readonly disabled/>
                         </div>
                         <div>
-                            <label>Monto a apostar $U:</label>
+                            <label class="apuestas__label">Monto a apostar $U:</label>
                             <input id="monto" type="text"/>
                             <button id="btnApostar">Apostar</button>
                             <label id="errorMonto"></label>
                         </div> 
                         <div>
-                            <label>Total a ganar $U:</label>
+                            <label class="apuestas__label">Total a ganar $U:</label>
                             <input id="total" type="text" readonly disabled/>
                             <label id="apuestaExito">Apuesta realizada</label>
                         </div>

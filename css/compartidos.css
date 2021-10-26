@@ -23,14 +23,14 @@ main {
 }
 
 .encabezado {
-  padding: 10px 100px;
+  padding: 10px 10px;
   width: 100%;
-  height: 80px;
+  height: 70px;
   background-color: green;
 }
 .encabezado .encabezado__navegador {
   width: 100%;
-  height: 100%;
+  height: 50px;
 }
 .encabezado .encabezado__navegador .encabezado__menu {
   width: 100%;
@@ -42,12 +42,60 @@ main {
 }
 .encabezado .encabezado__navegador .encabezado__menu .encabezado__item {
   text-align: center;
+  padding: 0;
+  height: auto;
+  width: auto;
 }
 .encabezado .encabezado__navegador .encabezado__menu .encabezado__item .encabezado__enlace {
-  padding: 5px;
-  font-size: 2em;
+  padding: 0px 5px;
+  font-size: 32px;
   border: 3px white solid;
   color: white;
+  text-decoration: none;
+}
+.encabezado .encabezado__navegador .encabezado__menu .encabezado__item--titulo {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.encabezado .encabezado__navegador .encabezado__menu .encabezado__item--titulo .encabezado__textoTitulo {
+  font-size: 3.5em;
+  color: #11035e;
+  font-weight: bold;
+  font-family: fantasy;
+  padding: 0px 10px 0px 20px;
+}
+.encabezado .encabezado__navegador .encabezado__menu .encabezado__item--titulo .encabezado__logo {
+  width: 20px;
+  text-align: center;
+  color: gold;
+  font-size: 1.5em;
+  animation-name: cambiosLogo;
+  animation-timing-function: linear;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+@keyframes cambiosLogo {
+  0% {
+    color: gold;
+    font-size: 1.5em;
+  }
+  25% {
+    color: gold;
+    font-size: 2em;
+  }
+  50% {
+    color: gold;
+    font-size: 1.5em;
+  }
+  75% {
+    color: gold;
+    font-size: 1em;
+  }
+  100% {
+    color: gold;
+    font-size: 1.5em;
+  }
 }
 
 button {
@@ -64,6 +112,8 @@ button:hover, select:hover {
 h1 {
   color: white;
   text-align: start;
+  font-size: 2em;
+  font-family: "Times New Roman", Times, serif;
 }
 
 /*# sourceMappingURL=compartidos.css.map */

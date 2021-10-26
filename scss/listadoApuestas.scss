@@ -1,6 +1,15 @@
 $fondoTotal: rgb(32, 83, 30);
 $fondoPartido: rgb(170, 231, 255);
 
+*{
+    margin: 0;
+    padding:0;
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style:none;
+    color:inherit;      
+}
+
 #apuestas__listadoConfirmados{
     border: 3px solid black;
 
@@ -17,9 +26,10 @@ $fondoPartido: rgb(170, 231, 255);
             width: 5%;
             text-align: center;
 
-            button{
-                padding: 2px;
+            .apuestas__botonExp{
                 border-radius: 10px;
+                width: 20px;
+                height: auto;
             }
         }
 
