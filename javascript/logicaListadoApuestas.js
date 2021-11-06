@@ -7,9 +7,12 @@ const calcularPartido = (e) =>{
     let id = valorId.replace("Calcular", "");
     
     //lista de apuestas confirmadas
-    const lista = JSON.parse(localStorage.getItem("apuestasConfirmadas"));
+    const user = JSON.parse(localStorage.getItem("userLogueado"));
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    const userReal = usuarios.find(usuario => usuario.nombreUsuario == user.nombreUsuario);
+    
     //busco que existe la apuesta seleccionada
-    const apuesta = lista.find(game => game.id == id);
+    const apuesta = userReal.apuestas.find(game => game.id == id);
 
     let res = 0;
     let ganador = true;
@@ -30,8 +33,15 @@ const calcularPartido = (e) =>{
     if(ganador) apuesta.resultadoTotal = "Ganó";
     else apuesta.resultadoTotal = "Perdió";
     //edito la apuesta en el listado y lo vuelvo a subir a la sesion
-    lista[id - 1] = apuesta;
-    localStorage.setItem("apuestasConfirmadas", JSON.stringify(lista));
+    userReal.apuestas[id - 1] = apuesta;
+    const usuariosActuliazados = usuarios.map(usuario=>{
+        if(usuario.nombreUsuario == userReal.nombreUsuario)
+        {
+            usuario = userReal;
+        }
+        return usuario;
+    });
+    localStorage.setItem("usuarios", JSON.stringify(usuariosActuliazados));
     //vuelvo a mostrar listado actualizado
     listaApuestas();
 }
@@ -59,79 +69,98 @@ const expandirPestaña = (e)=>{
 
 //lista de apuestas
 const listaApuestas = ()=>{
-    //obtengo de la sesión las apuestas confirmadas
-    const lista = JSON.parse(localStorage.getItem("apuestasConfirmadas"));
+    //obtengo de la sesión las apuestas confirmadas para user X
+    const user = JSON.parse(localStorage.getItem("userLogueado"))
+
+    verificarLogueo();
+    //vacío el div contenedor de apuestas
     divApuestasConfirmadas.empty();
 
-    //recorro la lista de apuestas y muestro cada apuesta
-    for(const apuesta of lista)
+    if(user == null)
     {
-        //creo el div contenedor de la info particular de cada partido y seteo propiedades
-        const div = document.createElement("div");
-        div.className="apuestas__partidos";
-        div.setAttribute("id", "apuestas__expandir" + apuesta.id);
-
-        //info global de una apuesta a mostrar 
-        const divTitularApuesta = document.createElement("div");
-        divTitularApuesta.innerHTML = '<div class="apuestas__expandir"><button class="apuestas__botonExp" id="Expandir' + apuesta.id + 
-                                    '">...</button></div><div class="apuestas__parrafoTotal">Gana $ ' + apuesta.ganar + 
-                                    ' - Apostado $ ' + apuesta.monto + ' - ' + apuesta.resultadoTotal +
-                                    '</div><div class="apuestas__parrafoBoton"><button id="Calcular' + 
-                                    apuesta.id + '">Cacular</button></div>';
-        //seteo del nombre de clase
-        divTitularApuesta.className = "apuestas__total";
-
-        //agrego al 
-        divApuestasConfirmadas.append(divTitularApuesta);
-
-        //recorro cada partido y muestro la info
-        for(const juego of apuesta.juegos)
+        divApuestasConfirmadas.html('<label class="apuestas__contenedorVacio">Es necesario estar logueado para observar apuestas confirmadas</label>');
+    }
+    else
+    {
+        //busco el user con los datos actualizados ya que el logueo no tiene refresh del listado de apuestas
+        const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+        const userReal = usuarios.find(usuario => usuario.nombreUsuario == user.nombreUsuario);
+        if(userReal.apuestas.length == 0){
+            divApuestasConfirmadas.html('<label class="apuestas__contenedorVacio">Aún no tienes apuestas realizadas</label>');
+        } 
+        else
         {
-            let teamElegido = "";
-            let multiplicador = 1;
-
-            //creo div de 1 juego
-            const bloqueJuego = document.createElement("div");
-            
-            //seteo elecciòn a mostrar
-            if(juego.elegido == "0")
-            {   
-                teamElegido = juego.equipo1;
-                multiplicador = juego.probabilidad[0];
-            }
-            else if(juego.elegido == "1")
+            //recorro la lista de apuestas y muestro cada apuesta
+            for(const apuesta of userReal.apuestas)
             {
-                teamElegido = "Empate";
-                multiplicador = juego.probabilidad[1];
+                //creo el div contenedor de la info particular de cada partido y seteo propiedades
+                const div = document.createElement("div");
+                div.className="apuestas__partidos";
+                div.setAttribute("id", "apuestas__expandir" + apuesta.id);
+
+                //info global de una apuesta a mostrar 
+                const divTitularApuesta = document.createElement("div");
+                divTitularApuesta.innerHTML = '<div class="apuestas__expandir"><button class="apuestas__botonExp" id="Expandir' + apuesta.id + 
+                                            '">...</button></div><div class="apuestas__parrafoTotal">Gana $ ' + apuesta.ganar + 
+                                            ' - Apostado $ ' + apuesta.monto + ' - ' + apuesta.resultadoTotal +
+                                            '</div><div class="apuestas__parrafoBoton"><button id="Calcular' + 
+                                            apuesta.id + '">Cacular</button></div>';
+                //seteo del nombre de clase
+                divTitularApuesta.className = "apuestas__total";
+
+                //agrego al 
+                divApuestasConfirmadas.append(divTitularApuesta);
+
+                //recorro cada partido y muestro la info
+                for(const juego of apuesta.juegos)
+                {
+                    let teamElegido = "";
+                    let multiplicador = 1;
+
+                    //creo div de 1 juego
+                    const bloqueJuego = document.createElement("div");
+                    
+                    //seteo elecciòn a mostrar
+                    if(juego.elegido == "0")
+                    {   
+                        teamElegido = juego.equipo1;
+                        multiplicador = juego.probabilidad[0];
+                    }
+                    else if(juego.elegido == "1")
+                    {
+                        teamElegido = "Empate";
+                        multiplicador = juego.probabilidad[1];
+                    }
+                    else if(juego.elegido == "2")
+                    {
+                        teamElegido = juego.equipo2;
+                        multiplicador = juego.probabilidad[2];
+                    }
+
+                    //contenido del div de cada juego
+                    bloqueJuego.innerHTML = '<p>' + juego.equipo1 + ' vs ' + juego.equipo2 + '</p>';
+                    bloqueJuego.innerHTML += '<p>Opción: ' + teamElegido + ' - ' + multiplicador + '</p>';
+                    bloqueJuego.innerHTML += '<p>' + juego.resultado + '</p>';
+
+                    //agrego la info al div contenedor
+                    div.appendChild(bloqueJuego);
+                }
+                //agrego al div de inicio
+                divApuestasConfirmadas.append(div);
+
+                //sumo funcionalidad a la página
+                const botonCal = document.getElementById("Calcular" + apuesta.id);
+                botonCal.addEventListener("click", calcularPartido);
+
+                const botonExp = document.getElementById("Expandir" + apuesta.id);
+                botonExp.addEventListener("click",expandirPestaña);
+                
+                //muestro botòn para calcular resultado
+                if(apuesta.resultadoTotal != "sin resultado")
+                {
+                    botonCal.style.display = "none";
+                }
             }
-            else if(juego.elegido == "2")
-            {
-                teamElegido = juego.equipo2;
-                multiplicador = juego.probabilidad[2];
-            }
-
-            //contenido del div de cada juego
-            bloqueJuego.innerHTML = '<p>' + juego.equipo1 + ' vs ' + juego.equipo2 + '</p>';
-            bloqueJuego.innerHTML += '<p>Opción: ' + teamElegido + ' - ' + multiplicador + '</p>';
-            bloqueJuego.innerHTML += '<p>' + juego.resultado + '</p>';
-
-            //agrego la info al div contenedor
-            div.appendChild(bloqueJuego);
-        }
-        //agrego al div de inicio
-        divApuestasConfirmadas.append(div);
-
-        //sumo funcionalidad a la página
-        const botonCal = document.getElementById("Calcular" + apuesta.id);
-        botonCal.addEventListener("click", calcularPartido);
-
-        const botonExp = document.getElementById("Expandir" + apuesta.id);
-        botonExp.addEventListener("click",expandirPestaña);
-        
-        //muestro botòn para calcular resultado
-        if(apuesta.resultadoTotal != "sin resultado")
-        {
-            botonCal.style.display = "none";
         }
     }
     //no visibilidad de la info específica de cada partido en una apuesta

@@ -22,14 +22,22 @@ main {
   justify-content: space-between;
 }
 
+button {
+  background-color: #11035e;
+  color: white;
+  font-weight: bold;
+}
+
 .encabezado {
+  display: flex;
+  flex-flow: row nowrap;
   padding: 10px 10px;
   width: 100%;
   height: 70px;
   background-color: green;
 }
 .encabezado .encabezado__navegador {
-  width: 100%;
+  width: 90%;
   height: 50px;
 }
 .encabezado .encabezado__navegador .encabezado__menu {
@@ -97,11 +105,66 @@ main {
     font-size: 1.5em;
   }
 }
-
-button {
-  background-color: #11035e;
-  color: white;
+.encabezado .encabezado__sesion {
+  width: 10%;
+  text-align: center;
+}
+.encabezado .encabezado__sesion .encabezado__logueo {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+.encabezado .encabezado__sesion .encabezado__logueo .encabezado__contenedorBoton .encabezado__btnLogueo {
+  width: 62px;
+  font-size: 11px;
   font-weight: bold;
+  padding: 5px;
+}
+.encabezado .encabezado__sesion .encabezado__deslogueo {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+.encabezado .encabezado__sesion .encabezado__deslogueo .encabezado__contenedorNomUsuario {
+  width: 100%;
+}
+.encabezado .encabezado__sesion .encabezado__deslogueo .encabezado__contenedorNomUsuario #nombreUsuario {
+  width: 90%;
+  border-radius: 5%;
+  color: #11035e;
+  padding: 1px;
+  font-weight: bold;
+  font-size: 0.8em;
+  background-color: white;
+}
+.encabezado .encabezado__sesion .encabezado__deslogueo .encabezado__contenedorBtnLogueo {
+  width: 100%;
+}
+.encabezado .encabezado__sesion .encabezado__deslogueo .encabezado__contenedorBtnLogueo #btnDeslogueo {
+  width: 90%;
+  border-radius: 5%;
+  padding: 1px;
+  font-size: 0.8em;
+}
+
+#form__logueo {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+#form__logueo .form__errorGenerico {
+  color: red;
+}
+#form__logueo .form__contenedorInputs {
+  width: 90%;
+  margin: 2px;
+}
+#form__logueo .form__contenedorInputs .form__lblGenerico {
+  width: 40%;
+  font-weight: bold;
+}
+#form__logueo .form__contenedorInputs input {
+  width: 50%;
 }
 
 button:hover, select:hover {

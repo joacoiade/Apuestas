@@ -25,14 +25,23 @@ main{
     justify-content: space-between;
 }
 
+button{
+    background-color: $fondoBotones;
+    color: $textoBoton;
+    font-weight: bold;
+}
+
 .encabezado{
+    display:flex;
+    flex-flow: row nowrap;
+
     padding: 10px 10px;
     width: 100%;
     height: 70px;
     background-color: green;
 
     .encabezado__navegador{
-        width: 100%;
+        width: 90%;
         height: 50px;
 
         .encabezado__menu{
@@ -109,12 +118,80 @@ main{
             }
         }
     }
+
+    .encabezado__sesion{
+        width: 10%;
+        text-align: center;
+
+        .encabezado__logueo{
+            display: flex;
+            flex-flow: column nowrap;
+            width: 100%;
+
+            .encabezado__contenedorBoton{
+
+                .encabezado__btnLogueo{
+                    width: 62px;
+                    font-size: 11px;
+                    font-weight: bold;
+                    padding: 5px;
+                }
+            }
+        }
+
+        .encabezado__deslogueo{
+            display: flex;
+            flex-flow: column nowrap;
+            width: 100%;
+
+            .encabezado__contenedorNomUsuario{
+                width: 100%;
+                #nombreUsuario{
+                    width: 90%;
+                    border-radius: 5%;
+                    color: $fondoBotones;
+                    padding: 1px;
+                    font-weight: bold;
+                    font-size: 0.8em;
+                    background-color: $textoBoton;
+                }
+            }
+
+            .encabezado__contenedorBtnLogueo{
+                width: 100%;
+                #btnDeslogueo{
+                    width: 90%;
+                    border-radius: 5%;
+                    padding: 1px;
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
 }
 
-button{
-    background-color: $fondoBotones;
-    color: $textoBoton;
-    font-weight: bold;
+#form__logueo{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .form__errorGenerico{
+        color: red;
+    }
+
+    .form__contenedorInputs{
+        width: 90%;
+        margin: 2px;
+
+        .form__lblGenerico{
+            width: 40%;
+            font-weight: bold;
+        }
+
+        input{
+            width: 50%;
+        }
+    }
 }
 
 button:hover, select:hover{

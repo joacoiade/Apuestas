@@ -179,6 +179,15 @@
   flex-flow: row nowrap;
   justify-content: center;
   width: 100%;
+  margin-bottom: 10px;
+}
+#eleccion #eleccion__apostar {
+  width: auto;
+}
+#eleccion #eleccion__apostar #eleccion__btnApostar {
+  width: auto;
+  padding: 0px 10px;
+  border-radius: 5px;
 }
 #eleccion #eleccion__ligas {
   width: auto;
@@ -200,6 +209,38 @@
 #eleccion #eleccion__ligas #eleccion__errorLiga {
   width: 10px;
   color: red;
+}
+
+#ligas {
+  display: flex;
+  flex-flow: row nowrap;
+}
+#ligas .ligas__tabla {
+  border: 4px solid black;
+}
+#ligas .ligas__tabla .ligas__filath {
+  border: 2px solid black;
+}
+#ligas .ligas__tabla .ligas__filath .ligas__celdath {
+  border: 4px solid black;
+  padding: 2px;
+  background-color: white;
+  text-align: center;
+}
+#ligas .ligas__tabla .ligas__filatd {
+  border: 2px solid black;
+}
+#ligas .ligas__tabla .ligas__filatd .ligas__celdatd {
+  border: 2px solid black;
+  text-align: end;
+  padding: 2px;
+}
+#ligas .ligas__tabla .ligas__filatd:nth-child(odd) {
+  background: #aae7ff;
+}
+#ligas .ligas__tabla .ligas__filatd:nth-child(even) {
+  background: #11035e;
+  color: white;
 }
 
 /*# sourceMappingURL=index.css.map */

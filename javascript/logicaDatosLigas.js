@@ -2,8 +2,10 @@ const btnVer = $("#eleccion__btnLigas");
 
 const agregarCelda = (fila, contenido, tipoCelda) =>{
     const celda = document.createElement(tipoCelda);
-    celda.textContent = contenido; 
+    celda.textContent = contenido;
+    celda.className = "ligas__celda" + tipoCelda; 
     fila.appendChild(celda);
+    fila.className="ligas__fila" + tipoCelda;
 }
 
 const agregarCeldas = (contenedorTabla, tabla)=>{
@@ -23,7 +25,7 @@ const agregarCeldas = (contenedorTabla, tabla)=>{
                 }
                 else
                 {
-                    agregarCelda(filaInicial, "name", "th");
+                    agregarCelda(filaInicial, "team", "th");
                 }    
             }
             contenedorTabla.appendChild(filaInicial);
@@ -80,7 +82,7 @@ btnVer.click( function(e) {
 
 
                 const contenedorTabla = document.createElement("table");
-
+                contenedorTabla.className = "ligas__tabla";
                 let tabla = resp.standings[0].table;
 
                 agregarCeldas(contenedorTabla, tabla);
@@ -92,6 +94,7 @@ btnVer.click( function(e) {
             }
         });
     } 
+
 });
 
 const cargarInicio = ()=>{
@@ -103,16 +106,10 @@ const cargarInicio = ()=>{
             dataType: 'json',
             method: 'GET',
             success: (resp)=>{
-                console.log(resp);
                 const paises = resp;
 
                 const seleccionPais = document.getElementById("competicion");
-                /*
-                const opcion = document.createElement("option");
-                opcion.value = null;
-                opcion.text = "Seleccionar Liga";
-                seleccionPais.prepend(opcion);
-                */ 
+               
                 for(let i=0; i < paises.competitions.length; i++)
                 {
                     const opcion = document.createElement("option");

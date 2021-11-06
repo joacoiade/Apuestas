@@ -21,3 +21,20 @@ btnInicio.mouseout(function () {
                   "color": "white"}); 
 });
 
+//verifico si hay sesion iniciada
+const verificarLogueo = ()=>{
+   const user = JSON.parse(localStorage.getItem("userLogueado"));
+
+   if(user == null)
+   {
+       divContLog.style.display = "block";
+       divContDesl.style.display = "none";
+   }
+   else
+   {
+       divContLog.style.display = "none";
+       divContDesl.style.display = "block";
+       lblNombreUsuario.text(user.nombreUsuario);
+   }
+}
+

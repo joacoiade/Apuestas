@@ -1,5 +1,6 @@
 $fondoTotal: rgb(32, 83, 30);
 $fondoPartido: rgb(170, 231, 255);
+$fondoBotones: rgb(17, 3, 94);
 
 *{
     margin: 0;
@@ -63,5 +64,12 @@ $fondoPartido: rgb(170, 231, 255);
                 width: 33%;
             }
         }
+    }
+
+    .apuestas__contenedorVacio{
+        width: 100%;
+        text-align: center;
+        color: $fondoBotones;
+        font-weight: bold;
     }
 }

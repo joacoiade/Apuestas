@@ -17,3 +17,11 @@ class Apuesta{
         this.resultadoTotal = "sin resultado";
     }
 }
+
+class Usuario{
+    constructor(nick, pass){
+        this.nombreUsuario = nick;
+        this.contraseña = pass;
+        this.apuestas = [];
+    }
+}

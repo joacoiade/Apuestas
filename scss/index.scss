@@ -204,6 +204,16 @@ $fondoProbabilidad: rgb(170, 231, 255);
     flex-flow: row nowrap;
     justify-content: center;
     width: 100%;
+    margin-bottom: 10px;
+
+    #eleccion__apostar{
+        width: auto;
+        #eleccion__btnApostar{
+            width: auto;
+            padding: 0px 10px;
+            border-radius: 5px;
+        }
+    }
 
     #eleccion__ligas{
         width: auto;
@@ -227,6 +237,42 @@ $fondoProbabilidad: rgb(170, 231, 255);
         #eleccion__errorLiga{
             width: 10px;
             color: red;
+        }
+    }
+
+}   
+
+
+#ligas{
+    display: flex;
+    flex-flow: row nowrap;
+
+    .ligas__tabla{
+        border: 4px solid black;
+        .ligas__filath{
+            border: 2px solid black;
+            .ligas__celdath{
+                border: 4px solid black;
+                padding: 2px;
+                background-color: white;
+                text-align: center;
+            }
+        }
+
+        .ligas__filatd{
+            border: 2px solid black;
+            .ligas__celdatd{
+                border: 2px solid black;
+                text-align: end;
+                padding: 2px;
+            }
+        }
+        .ligas__filatd:nth-child(odd){
+            background: $fondoProbabilidad;
+        }
+        .ligas__filatd:nth-child(even){
+            background: $fondoBotones;
+            color: white;
         }
     }
 }

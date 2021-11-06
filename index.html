@@ -24,16 +24,39 @@
                     <li class="encabezado__item encabezado__item--titulo"><div><i class="fas fa-trophy encabezado__logo"></i></div><div class="encabezado__textoTitulo">TOTALBET</div><div><i class="fas fa-trophy encabezado__logo"></i></div></li>                    
                     <li class="encabezado__item"><a class="encabezado__enlace" id="encabezado__listadoApuestas" href="Secciones/listadoApuestas.html">Ver apuestas</a></li>
                 </ul>
-            </nav>          
+            </nav>
+            <div class="encabezado__sesion">
+                <div id="encabezado__logueo" class="encabezado__logueo">
+                    <!-- Button trigger modal -->
+                    <div class="encabezado__contenedorBoton">
+                        <button type="button" id="loguear" onclick="seteoID(event)" class="btn btn-info encabezado__btnLogueo" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Acceder
+                        </button>
+                    </div>
+                    <div class="encabezado__contenedorBoton"> 
+                        <button type="button" id="crear" onclick="seteoID(event)" class="btn btn-info encabezado__btnLogueo" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Registro
+                        </button>
+                    </div>                     
+                </div>
+                <div id="encabezado__deslogueo" class="encabezado__deslogueo">
+                    <div class="encabezado__contenedorNomUsuario">
+                        <label id="nombreUsuario"></label>
+                    </div>
+                    <div class="encabezado__contenedorBtnLogueo">
+                        <button id="btnDeslogueo" onclick="desloguear(event, 'index')">LOGOUT</button>
+                    </div>
+                </div>
+            </div>          
         </header>
         <main>
             <div id="eleccion">
-                <div id="eleccion__apostar" hidden>
+                <div id="eleccion__apostar">
                     <button id="eleccion__btnApostar">
                         Apostar
                     </button>
                 </div>
-                <div id="eleccion__ligas" visible>
+                <div id="eleccion__ligas">
                     <button id="eleccion__btnLigas">
                         Estadisticas
                     </button>
@@ -73,12 +96,48 @@
             </div>      
         </main>
 
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form__logueo">
+                        <hidden id="form__opcion"></hidden>
+                        <div class="form__contenedorNick form__contenedorInputs">
+                            <label class="form__lblNick form__lblGenerico">Usuario</label>
+                            <input id="form__nick"/>
+                            <label id="form__errorNick" class="form__errorGenerico"></label>
+                        </div>
+                        <div class="form__contenedorContraseña form__contenedorInputs">
+                            <label class="form__lblPass form__lblGenerico">Contraseña</label>
+                            <input id="form__pass"/>
+                            <label id="form__errorPass" class="form__errorGenerico"></label>
+                        </div>
+                        <div class="form__contenedorErrorGenerico">
+                            <label id="form__errorLogueo" class="form__errorGenerico"></label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCancelar" onclick="cancelar(event, 'index')" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmar" class="btn btn-primary" onclick="Logueo(event, 'index')">Confirmar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
 
         <script src="Boostrap/js/jquery-3.0.0.min.js"></script>
         <script src="javascript/dom.js"></script>
         <script src="javascript/objetos.js"></script>
-        <script src="javascript/logicaInicial.js"></script>
         <script src="javascript/navegador.js"></script>
+        <script src="javascript/logicaInicial.js"></script>
         <script src="javascript/logicaDatosLigas.js"></script>
+        <script src="javascript/logueo.js"></script>
     </body>
 </html>

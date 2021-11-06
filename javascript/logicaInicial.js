@@ -52,35 +52,52 @@ const realizarApuesta = (e)=>{
     e.preventDefault();
     limpiar();
 
-    const apuesta = JSON.parse(localStorage.getItem("apuesta"));
-    //en caso de errores en el monto, no realizar nada
-    if(isNaN(inputMonto.val().trim()) && inputMonto.val().trim() != "" || inputMonto.val().trim() == ""  || inputMonto.val().trim()%1 !=0)
+    const user = JSON.parse(localStorage.getItem("userLogueado"));
+    const apuesta = JSON.parse(localStorage.getItem("apuesta")) || new Apuesta();
+    //possiles errores: no logueo, no ingresar monto correcto, no tener apuestas
+    if(user == null)
+    {
+        setearError(lblErrorMonto, "Debes estar logueado para apostar");
+    }
+    else if(isNaN(inputMonto.val().trim()) && inputMonto.val().trim() != "" || inputMonto.val().trim() == ""  || inputMonto.val().trim()%1 !=0)
     {
         setearError(lblErrorMonto, "Recuerda ingresar un monto valido, sin valores decimales");
     }
     else if (apuesta.juegos.length == 0)
     {
         setearError(lblErrorMonto, "No se han seleccionado apuestas");
-    }
+    }/* 
+    else if(apuesta.juegos.length == 0)
+    {
+        setearError(lblErrorMonto, "No se han seleccionado apuestas");
+    } */
     else //se confirma la apuesta, se guarda en la memoria y se resetean los valores en pantalla
     {
-        const apuesta = JSON.parse(localStorage.getItem("apuesta"));
+        const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+        const userReal = usuarios.find(usuario => usuario.nombreUsuario == user.nombreUsuario);
         apuesta.ganar = inputTotal.val();
         apuesta.monto = inputMonto.val();
 
-        const apuestasConfirmadas = JSON.parse(localStorage.getItem("apuestasConfirmadas")) || [];
+        apuesta.id = userReal.apuestas.length + 1;
 
-        apuesta.id = apuestasConfirmadas.length + 1;
+        for(const usuario of usuarios)
+        {
+            if(usuario.nombreUsuario == userReal.nombreUsuario)
+            {
+                usuario.apuestas.push(apuesta);
+            }
+        }
 
-        apuestasConfirmadas.push(apuesta);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-        localStorage.setItem("apuestasConfirmadas", JSON.stringify(apuestasConfirmadas));
-        
         contenedorPartidos.empty();   
-
         inputMonto.val("");
         inputMultiplicador.val(1);
         inputTotal.val("");
+        for(const btn of btnsAgregar)
+        {
+            btn.textContent = "Agregar";
+        }
         
         localStorage.setItem("apuesta", JSON.stringify(new Apuesta()));
 
@@ -325,7 +342,7 @@ const listadoPartidos = ()=>{
 
         let boton = document.createElement("div");
         boton.className = "btnAgregar"
-        boton.innerHTML = '<button id="' + partido.id + '">Agregar</button>';
+        boton.innerHTML = '<button class="btnAgrEli" id="' + partido.id + '">Agregar</button>';
 
         divPartidos.append(boton);
 
@@ -341,6 +358,9 @@ const listadoPartidos = ()=>{
     inputMonto.keydown(cancelarEnter);
     inputMonto.keyup(montoApostar);
     btnApostar.click(realizarApuesta);
+    eleccionApostar.hide();
+
+    verificarLogueo();
 }
 
 //muestra la sección apuesta

@@ -53,5 +53,11 @@
 #apuestas__listadoConfirmados .apuestas__partidos div p {
   width: 33%;
 }
+#apuestas__listadoConfirmados .apuestas__contenedorVacio {
+  width: 100%;
+  text-align: center;
+  color: #11035e;
+  font-weight: bold;
+}
 
 /*# sourceMappingURL=listadoApuestas.css.map */
